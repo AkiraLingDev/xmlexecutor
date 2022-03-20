@@ -12,9 +12,14 @@ if((!$USER->isAuthorized()) && ($url != "/auth/")){
     header("Location: /auth/");
     exit;
 }
-
+global $DB;
+$DB = new DB();
+if($DB != false){
+    echo "DB is here!";
+}
 function ComponentManager($name){
     require ($_SERVER["DOCUMENT_ROOT"]."/core/components/".$name."/component.php");
 }
-
-require ($_SERVER["DOCUMENT_ROOT"]."/core/blocks/header.php");
+if($_POST["ajax"] != true) {
+    require ($_SERVER["DOCUMENT_ROOT"]."/core/blocks/header.php");
+}
