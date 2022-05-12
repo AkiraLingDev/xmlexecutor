@@ -4,8 +4,8 @@
 }
 
 html, body {
-    background: #1a1f25;
-    font-family: 'Roboto', sans-serif;
+    background: #e6f1ff;
+    font: normal 18px arial!important;
 }
 
 .clear {
@@ -31,7 +31,6 @@ form {
 
 .sign-in {
     float: left;
-    color: white;
     font-size: 1.3em;
 }
 
@@ -120,7 +119,6 @@ input[type="password"] {
 input[type="submit"] {
     background: #e6b333;
     border: none;
-    color: white;
     text-align: center;
     font-size: 0.8em;
     cursor: pointer;
@@ -180,4 +178,31 @@ input[type="radio"] {
     float: right;
     padding: 3px 0;
     cursor: pointer;
+}
+
+.header {
+    display: flex;
+    width: 100%;
+    flex-flow: wrap;
+    justify-content: end;
+    border-bottom: 1px solid grey;
+}
+.logout-block {
+    padding-top: 30px;
+    padding-bottom: 20px;
+    padding-right: 60px;
+}
+.profile-header {
+    padding-top: 30px;
+    padding-bottom: 20px;
+    padding-right: 60px;
+}
+.logout-link:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+.logout-link {
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
 }

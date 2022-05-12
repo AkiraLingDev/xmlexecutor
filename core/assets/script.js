@@ -22,4 +22,16 @@ $( document ).ready(function(){
         }
         e.preventDefault();
     });
+
+    // $(".logout-link").click(function () {
+    //     $.ajax({
+    //         url: '/core/ajax/logout.php',
+    //         method: 'post',
+    //         dataType: 'json',
+    //         data: {ajax: true},
+    //         success: function(data){
+    //             window.location.replace("http://stackoverflow.com");
+    //         }
+    //     });
+    // });
 });

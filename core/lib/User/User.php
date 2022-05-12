@@ -2,8 +2,21 @@
 
 class User
 {
+    public $login;
+
+    public function getLogin(){
+        return $this->login;
+    }
+
+    public function logout() {
+        session_destroy();
+        unset($_SESSION['login']);
+        return true;
+    }
+
     public function isAuthorized(){
         if(isset($_SESSION["login"])){
+            $this->login = $_SESSION["login"];
             return true;
         }else{
             return false;
@@ -17,7 +30,7 @@ class User
             $dbres = mysqli_query($DB->connect, $sql);
             $resAr = mysqli_fetch_array($dbres);
             if (!empty($resAr['id'])){
-                $this->makeSession($login);
+                $this->auth($login);
                 return true;
             }else{
                 return false;
@@ -29,8 +42,9 @@ class User
         return md5($password);
     }
 
-    private function makeSession($login) {
+    private function auth($login) {
         session_start();
         $_SESSION['login'] = $login;
+        $this->login = $login;
     }
 }

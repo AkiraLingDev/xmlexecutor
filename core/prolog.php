@@ -1,5 +1,5 @@
 <?php
-echo "prolog is here";
+//echo "prolog is here";
 require_once ($_SERVER["DOCUMENT_ROOT"]."/core/interface/loader.php");
 global $USER;
 $USER = new User();
@@ -15,7 +15,7 @@ if((!$USER->isAuthorized()) && ($url != "/auth/")){
 global $DB;
 $DB = new DB();
 if($DB != false){
-    echo "DB is here!";
+//    echo "DB is here!";
 }
 function ComponentManager($name){
     require ($_SERVER["DOCUMENT_ROOT"]."/core/components/".$name."/component.php");
