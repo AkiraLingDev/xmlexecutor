@@ -7,7 +7,7 @@ $USER = new User();
 $url = $_SERVER['REQUEST_URI'];
 $url = explode('?', $url);
 $url = $url[0];
-
+session_start();
 if((!$USER->isAuthorized()) && ($url != "/auth/")){
     header("Location: /auth/");
     exit;

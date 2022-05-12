@@ -11,11 +11,10 @@ class User
     }
 
     public function checkAuth($login, $password){
-        echo "auth checker";
+        global $DB;
         if (!empty($login) && !empty($password)){
-            $sql = 'SELECT id from users WHERE `login` = `'.$login.'` AND `password` = `'.$this->hashPassword($password).'`';
-            echo "pre DB";
-            $dbres = mysqli_query($DB, $sql);
+            $sql = "SELECT * FROM `users` WHERE `login` = '".$login."' AND `password` = '".$this->hashPassword($password)."'";
+            $dbres = mysqli_query($DB->connect, $sql);
             $resAr = mysqli_fetch_array($dbres);
             if (!empty($resAr['id'])){
                 $this->makeSession($login);
