@@ -93,10 +93,7 @@ input {
     outline: none;
 }
 
-input[type="text"]:focus, input[type="password"]:focus {
-    border: 1px solid white;
-    box-shadow: none;
-}
+
 
 .user-input:focus .user {
     background: white !important;
@@ -105,8 +102,8 @@ input[type="text"]:focus, input[type="password"]:focus {
 input[type="text"] {
     background: transparent;
     border: 2px solid #22272d;
-    padding-left: 45px;
-    color: #e6b333;
+    /*padding-left: 45px;*/
+    /*color: #e6b333;*/
 }
 
 input[type="password"] {
@@ -205,4 +202,28 @@ input[type="radio"] {
     text-decoration: none;
     cursor: pointer;
     color: black;
+}
+.xml-input-main-block {
+    width: 550px;
+    margin-top: 70px;
+    margin-left: 50px;
+}
+
+.xml-input-main-input {
+    display: flex;
+
+}
+#xml-main-button {
+    border-radius: 10px;
+    height: 40px;
+    border: 1px solid black;
+    margin: auto;
+    margin-left: 30px;
+    width: 120px;
+    color: white;
+    background-color: black;
+    cursor: pointer;
+}
+#xml-main-button:hover {
+    background-color: gray;
 }
