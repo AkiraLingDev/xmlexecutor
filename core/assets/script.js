@@ -23,6 +23,10 @@ $( document ).ready(function(){
         e.preventDefault();
     });
 
+    $('#xml-main-button').click(function () {
+        window.location = '/xmlexecute/index.php?url='+$('#xml-input-main').val();
+    });
+
     // $(".logout-link").click(function () {
     //     $.ajax({
     //         url: '/core/ajax/logout.php',
