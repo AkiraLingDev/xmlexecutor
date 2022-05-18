@@ -14,9 +14,7 @@ if((!$USER->isAuthorized()) && ($url != "/auth/")){
 }
 global $DB;
 $DB = new DB();
-if($DB != false){
-//    echo "DB is here!";
-}
+
 function ComponentManager($name){
     require ($_SERVER["DOCUMENT_ROOT"]."/core/components/".$name."/component.php");
 }

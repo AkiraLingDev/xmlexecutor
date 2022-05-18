@@ -27,15 +27,5 @@ $( document ).ready(function(){
         window.location = '/xmlexecute/index.php?url='+$('#xml-input-main').val();
     });
 
-    // $(".logout-link").click(function () {
-    //     $.ajax({
-    //         url: '/core/ajax/logout.php',
-    //         method: 'post',
-    //         dataType: 'json',
-    //         data: {ajax: true},
-    //         success: function(data){
-    //             window.location.replace("http://stackoverflow.com");
-    //         }
-    //     });
-    // });
+
 });

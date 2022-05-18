@@ -3,9 +3,14 @@
 class User
 {
     public $login;
+    public $id;
 
     public function getLogin(){
         return $this->login;
+    }
+
+    public function getId(){
+        return $this->id;
     }
 
     public function logout() {
@@ -30,7 +35,7 @@ class User
             $dbres = mysqli_query($DB->connect, $sql);
             $resAr = mysqli_fetch_array($dbres);
             if (!empty($resAr['id'])){
-                $this->auth($login);
+                $this->auth($login, $resAr['id']);
                 return true;
             }else{
                 return false;
@@ -42,9 +47,11 @@ class User
         return md5($password);
     }
 
-    private function auth($login) {
+    private function auth($login, $id) {
         session_start();
         $_SESSION['login'] = $login;
+        $_SESSION['id'] = $id;
         $this->login = $login;
+        $this->id = $id;
     }
 }
