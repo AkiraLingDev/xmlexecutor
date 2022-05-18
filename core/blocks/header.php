@@ -12,6 +12,9 @@
 <? include($_SERVER["DOCUMENT_ROOT"]."/core/assets/icons.html"); ?>
 <? if($USER->isAuthorized()): ?>
 <div class="header">
+    <div class="header-left-container">
+        <a href="/" class="header-title">XML Executor v0.6</a>
+    </div>
     <div class="profile-header"><?=$USER->getLogin()?></div>
     <div class="logout-block"><a href="/auth/logout.php" class="logout-link">Выйти</a></div>
 </div>

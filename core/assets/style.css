@@ -180,7 +180,7 @@ input[type="radio"] {
 .header {
     display: flex;
     width: 100%;
-    flex-flow: wrap;
+    flex-flow: nowrap;
     justify-content: end;
     border-bottom: 1px solid grey;
 }
@@ -226,4 +226,66 @@ input[type="radio"] {
 }
 #xml-main-button:hover {
     background-color: gray;
+}
+
+.xml-result-ok {
+    padding-left: 30px;
+}
+.xml-result-ok-list-title {
+    text-decoration: underline;
+    font-size: small;
+    cursor: pointer;
+}
+
+.xml-result-ok-list {
+    padding-left: 30px;
+    display: none;
+}
+
+a.xml-result-ok-link {
+    display: block;
+    color: black;
+}
+
+
+.xml-result-err {
+    padding-left: 30px;
+}
+.xml-result-err-list-title {
+    text-decoration: underline;
+    font-size: small;
+    cursor: pointer;
+}
+
+.xml-result-err-list {
+    padding-left: 30px;
+    display: none;
+}
+
+a.xml-result-err-link {
+    display: block;
+    color: black;
+}
+
+.xml-main-preloader {
+    padding-left: 30px;
+    padding-top: 60px;
+}
+
+.xml-main-result {
+    padding-top: 60px;
+}
+
+.header-title {
+    font-size: larger;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+}
+
+.header-left-container {
+    padding-left: 45px;
+    display: flex;
+    width: 100%;
+    align-items: center;
 }
