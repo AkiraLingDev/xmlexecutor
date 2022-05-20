@@ -8,3 +8,6 @@
         <input type="text" name="xml-input-main" id="xml-input-main"> <button id="xml-main-button">Проверить</button>
     </div>
 </div>
+<?php
+ComponentManager("history");
+?>

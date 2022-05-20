@@ -289,3 +289,25 @@ a.xml-result-err-link {
     width: 100%;
     align-items: center;
 }
+
+.main-history-block {
+    margin-top: 75px;
+    margin-left: 50px;
+}
+
+.main-history-container {
+    margin-top: 25px;
+}
+
+.main-history-item {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    border: 1px solid gray;
+    border-radius: 9px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.main-history-date {
+    width: 200px;
+}

@@ -10,7 +10,15 @@ class User
     }
 
     public function getId(){
-        return $this->id;
+        global $DB;
+        $sql = "SELECT id FROM `users` WHERE `login` = '".$this->login."'";
+        $dbres = mysqli_query($DB->connect, $sql);
+        $resAr = mysqli_fetch_array($dbres);
+        if (!empty($resAr['id'])){
+            return $resAr['id'];
+        }else{
+            return false;
+        }
     }
 
     public function logout() {

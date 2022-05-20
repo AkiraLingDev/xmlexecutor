@@ -20,6 +20,7 @@ class XE
         $sitemap = $this->parseRaw($sitemapRaw);
         $result['status'] = 'OK';
         $result['sitemap'] = $sitemap;
+        History::addRecord($this->url, $this->countResult($result['sitemap']));
         return $result;
     }
     private function parseRaw($xmlRaw){
@@ -61,4 +62,17 @@ class XE
         ));
     }
 
+    private function countResult($result){
+        $return['OK'] = 0;
+        $return['ERR'] = 0;
+        if (count($result['INCLUDE']) > 0){
+            foreach ($result['INCLUDE'] as $value){
+                $return['OK'] += count($value['OK']);
+                $return['ERR'] += count($value['TROUBLES']);
+            }
+        }
+        $return['OK'] += count($result['OK']);
+        $return['ERR'] += count($result['TROUBLES']);
+        return $return;
+    }
 }
