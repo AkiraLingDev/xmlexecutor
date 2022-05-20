@@ -15,7 +15,7 @@
     <div class="header-left-container">
         <a href="/" class="header-title">XML Executor v0.6</a>
     </div>
-    <div class="profile-header"><?=$USER->getLogin()?></div>
+    <div class="profile-header"><a href="/subscribes/" class="subscribe-link"><?=$USER->getLogin()?></a></div>
     <div class="logout-block"><a href="/auth/logout.php" class="logout-link">Выйти</a></div>
 </div>
 <?endif;?>

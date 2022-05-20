@@ -311,3 +311,51 @@ a.xml-result-err-link {
 .main-history-date {
     width: 200px;
 }
+
+.subscribe-link {
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
+}
+
+.subscribe-link:hover {
+    text-decoration: underline;
+}
+
+.subscribe-form-period-block {
+    display: flex;
+}
+.subscribe-form-submit-block {
+    display: flex;
+    align-items: center;
+}
+
+.subscribe-form-bottom-block {
+    display: flex;
+    justify-content: space-between;
+}
+
+.subscribe-form-url-block {
+    display: flex;
+}
+
+.subscribe-form-container {
+    max-width: 700px;
+    margin: 50px;
+    padding: 20px;
+    border: 1px solid gray;
+    border-radius: 10px;
+}
+
+.subscribe-form-submit {
+    background-color: black;
+    color: white;
+    padding: 10px;
+    border-radius: 15px;
+    border: 0;
+    cursor: pointer;
+}
+
+.subscribe-form-submit:hover {
+    background-color: gray;
+}

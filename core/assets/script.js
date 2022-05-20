@@ -23,6 +23,31 @@ $( document ).ready(function(){
         e.preventDefault();
     });
 
+    $(".subscribe-form-submit").click(function(){
+        var valid = true;
+        if($(".subscribe-form-period").val() == ''){
+            $(".subscribe-form-period").css("border","1px solid red");
+            valid = false;
+        }
+        if($(".subscribe-form-url").val() == ''){
+            $(".subscribe-form-url").css("border","1px solid red");
+            valid = false;
+        }
+        if(valid){
+            $.ajax({
+                url: '/core/components/add_subscribe/ajax.php',
+                method: 'post',
+                dataType: 'json',
+                data: {ajax: true, url: $(".subscribe-form-url").val(), period: $(".subscribe-form-period").val()},
+                complete: function(data){
+                    alert('Подписка успешно добавлена!');
+                    window.location.reload();
+                }
+            });
+        }
+        e.preventDefault();
+    });
+
     $('#xml-main-button').click(function () {
         window.location = '/xmlexecute/index.php?url='+$('#xml-input-main').val();
     });
