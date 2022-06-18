@@ -359,3 +359,30 @@ a.xml-result-err-link {
 .subscribe-form-submit:hover {
     background-color: gray;
 }
+
+.profile-subscribes-block {
+    margin-top: 75px;
+    margin-left: 50px;
+}
+
+.profile-subscribes-container {
+    margin-top: 25px;
+}
+
+.profile-subscribes-item {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    border: 1px solid gray;
+    border-radius: 9px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.subscribe-delete-button {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.subscribe-delete-button:hover {
+    color: darkred;
+}

@@ -48,6 +48,21 @@ $( document ).ready(function(){
         e.preventDefault();
     });
 
+    $(".subscribe-delete-button").click(function(){
+        $.ajax({
+            url: '/core/components/subscribe_list/ajax.php',
+            method: 'post',
+            dataType: 'json',
+            data: {ajax: true, action: 'delete', id: $(this).data('id')},
+            complete: function(data){
+                alert('Подписка успешно удалена!');
+                window.location.reload();
+            }
+        });
+        e.preventDefault();
+    });
+
+
     $('#xml-main-button').click(function () {
         window.location = '/xmlexecute/index.php?url='+$('#xml-input-main').val();
     });

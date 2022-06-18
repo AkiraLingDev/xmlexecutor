@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><? echo "заглушка"?></title>
+    <title><? echo "XML Executor v1.2"?></title>
     <link rel="stylesheet" href="/core/assets/style.css">
     <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
@@ -13,7 +13,7 @@
 <? if($USER->isAuthorized()): ?>
 <div class="header">
     <div class="header-left-container">
-        <a href="/" class="header-title">XML Executor v0.6</a>
+        <a href="/" class="header-title">XML Executor v1.2</a>
     </div>
     <div class="profile-header"><a href="/subscribes/" class="subscribe-link"><?=$USER->getLogin()?></a></div>
     <div class="logout-block"><a href="/auth/logout.php" class="logout-link">Выйти</a></div>

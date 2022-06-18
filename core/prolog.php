@@ -1,5 +1,5 @@
 <?php
-//echo "prolog is here";
+
 require_once ($_SERVER["DOCUMENT_ROOT"]."/core/interface/loader.php");
 global $USER;
 $USER = new User();
