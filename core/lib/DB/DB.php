@@ -11,5 +11,4 @@ class DB
         $this->connect = mysqli_connect($this->host, $this->login, $this->password, "xmlexecutor_db");
     }
 
-//    public function getBy
 }

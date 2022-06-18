@@ -7,18 +7,43 @@ if(empty($sitemapUrl)){
     <?php
 }else{
     ?>
-
     <script>
         $.ajax({
-            url: '/ajax/xmlexecutor.php',
+            url: '/ajax/getSteps.php',
             method: 'post',
-            dataType: 'html',
+            dataType: 'json',
             data: {ajax: true, url: '<?=$sitemapUrl?>'},
             success: function(data){
-                $('.xml-main-result').html(data);
-                $('.xml-main-preloader').hide();
+                let i = 1;
+                var arResult = [];
+                let steps = data.steps;
+                while (i <= steps) {
+                    $.ajax({
+                        url: '/ajax/xmlexecutor.php',
+                        method: 'post',
+                        dataType: 'json',
+                        data: {ajax: true, url: '<?=$sitemapUrl?>', step: i},
+                        success: function(data){
+                            arResult.push(data.info);
+                            if (data.current_step == steps) {
+                                $.ajax({
+                                    url: '/ajax/resultMutator.php',
+                                    method: 'post',
+                                    dataType: 'html',
+                                    data: {ajax: true, info: JSON.stringify(arResult), url: '<?=$sitemapUrl?>'},
+                                    success: function(data){
+                                        $('.xml-main-result').html(data);
+                                        $('.xml-main-preloader').hide();
+                                    }
+                                });
+                            }
+                        }
+                    });
+                    i++;
+                }
             }
         });
+
     </script>
     <div class="xml-main-preloader">
         Мы начали обрабатывать вашу карту сайта. Это может занять некоторое время, потерпите, пожалуйста.

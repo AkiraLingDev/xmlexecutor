@@ -2,10 +2,11 @@
 
 class XE
 {
-    public $url;
+    public $url, $resAr;
 
-    public function execute($url){
-        if(empty($url)) {
+    public function executeByStep($url, $step)
+    {
+        if (empty($url)) {
             $result['status'] = 'error';
             $result['message'] = 'Задан пустой URL';
             return $result;
@@ -17,62 +18,74 @@ class XE
             $result['message'] = 'Не удалось получить карту сайта';
             return $result;
         }
-        $sitemap = $this->parseRaw($sitemapRaw);
-        $result['status'] = 'OK';
-        $result['sitemap'] = $sitemap;
-        History::addRecord($this->url, $this->countResult($result['sitemap']));
-        return $result;
-    }
-    private function parseRaw($xmlRaw){
-
-        if ($xmlRaw->sitemap){
-            foreach ($xmlRaw as $xmlObject){
-                $cascadeUrl = $xmlObject->loc->__toString();
-                $arResult['INCLUDE'][] = $this->parseRaw($this->getXml($cascadeUrl));
-            }
-        }
-        foreach ($xmlRaw as $xmlObject){
-            $loc = $xmlObject->loc->__toString();
-            $status = $this->getStatus($loc);
+        $arLinks = $this->makeLinksAr($sitemapRaw);
+        $down = ($step - 1) * 5;
+        $up = $step * 5;
+        for ($i = $down; $i < $up; $i++) {
+            $status = $this->getStatus($arLinks[$i]);
             if ($status == 200) {
-                $arResult['OK'][] = $loc;
-            }else{
-                $arResult['TROUBLES'][] = array($loc => $status);
+                $arResult['OK'][] = $arLinks[$i];
+            } else {
+                $arResult['TROUBLES'][] = array('link' => $arLinks[$i], 'status' => $status);
             }
         }
         return $arResult;
     }
 
-    private function getStatus($url){
+
+    public function getSteps($url)
+    {
+        if (empty($url)) {
+            $result['status'] = 'error';
+            $result['message'] = 'Задан пустой URL';
+            return $result;
+        }
+        $this->url = $url;
+        $sitemapRaw = $this->getXml($this->url);
+        if ($sitemapRaw == false) {
+            $result['status'] = 'error';
+            $result['message'] = 'Не удалось получить карту сайта';
+            return $result;
+        }
+        $linksAr = $this->makeLinksAr($sitemapRaw);
+        return ceil(count($linksAr) / 5);
+    }
+
+    private function makeLinksAr($xmlRaw)
+    {
+        if ($xmlRaw->sitemap) {
+            foreach ($xmlRaw as $xmlObject) {
+                $cascadeUrl = $xmlObject->loc->__toString();
+                $this->makeLinksAr($this->getXml($cascadeUrl));
+            }
+        }
+        foreach ($xmlRaw as $xmlObject) {
+            $loc = $xmlObject->loc->__toString();
+            $this->resAr[] = $loc;
+        }
+        return $this->resAr;
+    }
+
+
+    private function getStatus($url)
+    {
         $headers = get_headers($url, true, $this->getContext());
         return substr($headers[0], 9, 3);
     }
 
-    private function getXml($url){
+    private function getXml($url)
+    {
         libxml_set_streams_context($this->getContext());
         return simplexml_load_file($url);
     }
 
-    private function getContext(){
+    private function getContext()
+    {
         return stream_context_create(array(
-            "ssl"=>array(
-                "verify_peer"=>false,
-                "verify_peer_name"=>false,
+            "ssl" => array(
+                "verify_peer" => false,
+                "verify_peer_name" => false,
             ),
         ));
-    }
-
-    private function countResult($result){
-        $return['OK'] = 0;
-        $return['ERR'] = 0;
-        if (count($result['INCLUDE']) > 0){
-            foreach ($result['INCLUDE'] as $value){
-                $return['OK'] += count($value['OK']);
-                $return['ERR'] += count($value['TROUBLES']);
-            }
-        }
-        $return['OK'] += count($result['OK']);
-        $return['ERR'] += count($result['TROUBLES']);
-        return $return;
     }
 }

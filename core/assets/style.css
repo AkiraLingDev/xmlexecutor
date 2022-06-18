@@ -109,7 +109,6 @@ input[type="text"] {
 input[type="password"] {
     background: transparent;
     border: 2px solid #22272d;
-    padding-left: 45px;
     color: #e6b333;
 }
 
