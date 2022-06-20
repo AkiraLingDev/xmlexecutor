@@ -8,7 +8,7 @@ $url = $_SERVER['REQUEST_URI'];
 $url = explode('?', $url);
 $url = $url[0];
 session_start();
-if((!$USER->isAuthorized()) && ($url != "/auth/")){
+if((!$USER->isAuthorized()) && ($url != "/auth/") && !defined('IS_AGENT')){
     header("Location: /auth/");
     exit;
 }

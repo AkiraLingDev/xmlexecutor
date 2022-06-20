@@ -47,4 +47,25 @@ class Subscribe
             }
         }
     }
+
+    public static function getListCron()
+    {
+        global $DB;
+        $sql = "SELECT * FROM `subscribes`";
+        $dbres = mysqli_query($DB->connect, $sql);
+        while ($resAr = mysqli_fetch_array($dbres, 1)) {
+            $result[] = $resAr;
+        }
+        return $result;
+    }
+
+    public static function updateTime($id, $newTime) {
+        global $DB;
+        $sql = "UPDATE `subscribes` SET `next_start`='".$newTime."' WHERE `id` = '".$id."'";
+        $dbres = mysqli_query($DB->connect, $sql);
+        while ($resAr = mysqli_fetch_array($dbres, 1)) {
+            $result[] = $resAr;
+        }
+        return $result;
+    }
 }

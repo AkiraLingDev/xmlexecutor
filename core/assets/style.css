@@ -109,7 +109,6 @@ input[type="text"] {
 input[type="password"] {
     background: transparent;
     border: 2px solid #22272d;
-    color: #e6b333;
 }
 
 input[type="submit"] {
